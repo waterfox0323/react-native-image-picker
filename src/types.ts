@@ -10,13 +10,13 @@ export interface ImageLibraryOptions {
   includeBase64?: boolean;
   includeExtra?: boolean;
   presentationStyle?:
-    | 'currentContext'
-    | 'fullScreen'
-    | 'pageSheet'
-    | 'formSheet'
-    | 'popover'
-    | 'overFullScreen'
-    | 'overCurrentContext';
+  | 'currentContext'
+  | 'fullScreen'
+  | 'pageSheet'
+  | 'formSheet'
+  | 'popover'
+  | 'overFullScreen'
+  | 'overCurrentContext';
 }
 
 export interface CameraOptions
@@ -62,5 +62,5 @@ export type PhotoQuality =
 export type CameraType = 'back' | 'front';
 export type MediaType = 'photo' | 'video' | 'mixed';
 export type AndroidVideoOptions = 'low' | 'high';
-export type iOSVideoOptions = 'low' | 'medium' | 'high';
+export type iOSVideoOptions = 'low' | 'medium' | 'high' | '640x480' | '1280x720' | '960x540';
 export type ErrorCode = 'camera_unavailable' | 'permission' | 'others';

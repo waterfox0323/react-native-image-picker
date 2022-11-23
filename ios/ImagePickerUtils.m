@@ -14,6 +14,15 @@
         else if ([[options objectForKey:@"videoQuality"] isEqualToString:@"low"]) {
             picker.videoQuality = UIImagePickerControllerQualityTypeLow;
         }
+        else if ([[options objectForKey:@"videoQuality"] isEqualToString:@"640x480"]) {
+            picker.videoQuality = UIImagePickerControllerQualityType640x480;
+        }
+        else if ([[options objectForKey:@"videoQuality"] isEqualToString:@"1280x720"]) {
+            picker.videoQuality = UIImagePickerControllerQualityTypeIFrame1280x720;
+        }
+        else if ([[options objectForKey:@"videoQuality"] isEqualToString:@"960x540"]) {
+            picker.videoQuality = UIImagePickerControllerQualityTypeIFrame960x540;
+        }       
         else {
             picker.videoQuality = UIImagePickerControllerQualityTypeMedium;
         }
