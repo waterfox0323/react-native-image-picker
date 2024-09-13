@@ -31,7 +31,7 @@
     if (target == camera) {
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
 
-        if (options[@"durationLimit"] > 0) {
+        if ([options[@"durationLimit"] doubleValue] > 0) {
             picker.videoMaximumDuration = [options[@"durationLimit"] doubleValue];
         }
 
@@ -48,7 +48,7 @@
         picker.mediaTypes = @[(NSString *)kUTTypeMovie];
     } else if ([options[@"mediaType"] isEqualToString:@"photo"]) {
         picker.mediaTypes = @[(NSString *)kUTTypeImage];
-    } else if ((target == library) && ([options[@"mediaType"] isEqualToString:@"mixed"])) {
+    } else if ([options[@"mediaType"] isEqualToString:@"mixed"]) {
         picker.mediaTypes = @[(NSString *)kUTTypeImage, (NSString *)kUTTypeMovie];
     }
 
@@ -66,8 +66,17 @@
     } else {
         configuration = [[PHPickerConfiguration alloc] init];
     }
+
+    if ([[options objectForKey:@"assetRepresentationMode"] isEqualToString:@"current"]) {
+        configuration.preferredAssetRepresentationMode = PHPickerConfigurationAssetRepresentationModeCurrent;
+    }
+    else if ([[options objectForKey:@"assetRepresentationMode"] isEqualToString:@"compatible"]) {
+        configuration.preferredAssetRepresentationMode = PHPickerConfigurationAssetRepresentationModeCompatible;
+    }
+    else {
+       configuration.preferredAssetRepresentationMode = PHPickerConfigurationAssetRepresentationModeAutomatic;
+    }
     
-    configuration.preferredAssetRepresentationMode = PHPickerConfigurationAssetRepresentationModeCurrent;
     configuration.selectionLimit = [options[@"selectionLimit"] integerValue];
 
     if ([options[@"mediaType"] isEqualToString:@"video"]) {

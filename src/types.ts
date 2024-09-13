@@ -1,7 +1,6 @@
 export type Callback = (response: ImagePickerResponse) => any;
 
-export interface ImageLibraryOptions {
-  selectionLimit?: number;
+export interface OptionsCommon {
   mediaType: MediaType;
   maxWidth?: number;
   maxHeight?: number;
@@ -9,18 +8,26 @@ export interface ImageLibraryOptions {
   videoQuality?: AndroidVideoOptions | iOSVideoOptions;
   includeBase64?: boolean;
   includeExtra?: boolean;
+  formatAsMp4?: boolean;
   presentationStyle?:
-  | 'currentContext'
-  | 'fullScreen'
-  | 'pageSheet'
-  | 'formSheet'
-  | 'popover'
-  | 'overFullScreen'
-  | 'overCurrentContext';
+    | 'currentContext'
+    | 'fullScreen'
+    | 'pageSheet'
+    | 'formSheet'
+    | 'popover'
+    | 'overFullScreen'
+    | 'overCurrentContext'
+    assetRepresentationMode?:
+    | 'auto'
+    | 'current'
+    | 'compatible';
 }
 
-export interface CameraOptions
-  extends Omit<ImageLibraryOptions, 'selectionLimit'> {
+export interface ImageLibraryOptions extends OptionsCommon {
+  selectionLimit?: number;
+}
+
+export interface CameraOptions extends OptionsCommon {
   durationLimit?: number;
   saveToPhotos?: boolean;
   cameraType?: CameraType;
@@ -31,6 +38,7 @@ export interface Asset {
   uri?: string;
   width?: number;
   height?: number;
+  originalPath?: string;
   fileSize?: number;
   type?: string;
   fileName?: string;
